@@ -19,6 +19,14 @@ def save():
     flash("Mail added!")
     return redirect('/result') 
 
+@app.route('/delete/<int:id>')
+def delete(id):
+    data = {
+        "id":id,
+      }
+    mail.Mail.delete(data)
+    return redirect('/result') 
+
 @app.route('/result')
 def result():
     return render_template('/result.html',mails = mail.Mail.get_all()) 
